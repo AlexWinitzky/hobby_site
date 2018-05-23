@@ -52,4 +52,9 @@ router.delete('/:id', function (req, res) {
     })
 })
 
+/* GET /flat/photos */
+router.get('/:id/photos', function(req, res) {
+    return res.redirect('photos')
+})
+
 module.exports = router;
