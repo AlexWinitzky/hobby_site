@@ -1,1 +1,18 @@
-<h1>test</h1>
+<html>
+  <head>
+    <% include ./partials/header %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/navbar %>
+    </header>
+    <div class="container">
+      <% var url = "/form/" + movie.id + "?_method=PUT" %>
+      <form method="POST" action="<%= url %>" >
+        <input required name="title" value='<%= movie.title %>' />
+        <a href="/flat" class="btn red">Cancel</a>
+        <button class="btn">Save</button>
+     </form>
+   </div>
+  </body>
+</html>
