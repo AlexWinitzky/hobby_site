@@ -13,10 +13,28 @@ router.get('/', function(req, res) {
   Flatearth.all()
   .then(function (evidence) {
     res.render('flat', {fact: evidence});
-  })
+    })
 });
 
-/* POST /evidence */
+/* GET /flat/form */
+router.get('/:id/form', function (req, res) {
+  Flatearth.findById(req.params.id)
+    .then(function (evidence) {
+      return res.render('form', { fact: evidence })
+    })
+})
+/* PUT /flat/ */
+router.put('/:id', function (req, res) {
+  Flatearth.update(
+    { evidence: req.body.evidence },
+    { returning: true, where: { id: req.params.id } }
+  )
+    .then(function () {
+      return res.redirect('/flat')
+    })
+})
+
+/* POST flat/evidence */
 router.post('/', function (req, res) {
   var fact = req.body.evidence
   Flatearth.create({ evidence: fact })
@@ -25,7 +43,7 @@ router.post('/', function (req, res) {
     })
 })
 
-/* DELETE /evidence/ */
+/* DELETE flat/evidence/ */
 router.delete('/:id', function (req, res) {
   Flatearth.findById(req.params.id)
     .then(function (fact) {
@@ -33,12 +51,5 @@ router.delete('/:id', function (req, res) {
       return res.redirect('/flat')
     })
 })
-
-router.get('/form', function(req, res) {
-  res.render('form');
-});
-
-
-
 
 module.exports = router;

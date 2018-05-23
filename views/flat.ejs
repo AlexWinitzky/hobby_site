@@ -33,7 +33,7 @@
        <tbody>
          <% fact.forEach( function(fact) { %>
           <% var url = "/flat/" + fact.id + "?_method=DELETE" %>
-         <% var editUrl = "/form/" + fact.id + "/edit" %>
+          <% var editUrl = "/flat/" + fact.id + "/form" %>
            <tr>
              <td><%= fact.evidence %></td>
              <td>
